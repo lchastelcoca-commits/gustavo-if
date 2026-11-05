@@ -1,0 +1,6 @@
+{
+  "name": "leitche.enterprises",
+  "description": "Plataforma empresarial de leites nobres, queijos artesanais, derivados lácteos e soluções de lactose pura para consumidores e negócios.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
