@@ -1,6 +1,7 @@
 import React from 'react';
 import { Sparkles, ArrowRight, UserPlus, LogIn, ShieldCheck, HeartHandshake, ThermometerSnowflake, Truck } from 'lucide-react';
 import { useAuth } from '../context/AuthContext';
+import { FounderVideoPlayer } from './FounderVideoPlayer';
 
 interface FounderWelcomeProps {
   onOpenAuth: (tab: 'login' | 'register') => void;
@@ -22,38 +23,15 @@ export const FounderWelcome: React.FC<FounderWelcomeProps> = ({
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
           
-          {/* Founder Photo Column — The First Visual Anchor of the Site */}
-          <div className="lg:col-span-5 flex justify-center order-1 lg:order-2">
-            <div className="relative group w-full max-w-md">
-              {/* Outer glow ring */}
-              <div className="absolute -inset-2 bg-gradient-to-tr from-amber-500 via-emerald-500 to-lime-400 rounded-3xl blur-md opacity-80 group-hover:opacity-100 transition duration-300" />
-              
-              <div className="relative rounded-2xl overflow-hidden bg-stone-950 border-2 border-white/20 aspect-4/3 sm:aspect-square w-full shadow-2xl">
-                <img
-                  src="/assets/aistudio/WhatsApp_Image_2026-11-01_at_21.53.48_2c479c6e.jpeg"
-                  alt="Dono e Fundador da Leitche Enterprises"
-                  referrerPolicy="no-referrer"
-                  className="w-full h-full object-cover object-top group-hover:scale-102 transition-transform duration-500"
-                />
-
-                <div className="absolute inset-0 bg-gradient-to-t from-stone-950/80 via-transparent to-transparent pointer-events-none" />
-                
-                {/* Photo Badge Lockup */}
-                <div className="absolute bottom-4 left-4 right-4 bg-stone-900/90 backdrop-blur-md px-4 py-3 rounded-xl border border-white/15 flex items-center justify-between">
-                  <div>
-                    <p className="text-xs sm:text-sm font-bold text-white tracking-wide">Dono & Fundador</p>
-                    <p className="text-[11px] text-amber-300 font-mono font-medium">leitche.enterprises</p>
-                  </div>
-                  <span className="text-[11px] px-2.5 py-1 rounded-md bg-emerald-500/20 text-emerald-300 border border-emerald-400/40 font-semibold uppercase tracking-wider">
-                    Comando Geral
-                  </span>
-                </div>
-              </div>
+          {/* Founder Video Reel Column — First Visual Anchor of the Site */}
+          <div className="lg:col-span-6 flex justify-center order-1 lg:order-2">
+            <div className="w-full max-w-xl">
+              <FounderVideoPlayer />
             </div>
           </div>
 
           {/* Message & Welcome Column */}
-          <div className="lg:col-span-7 space-y-6 order-2 lg:order-1">
+          <div className="lg:col-span-6 space-y-6 order-2 lg:order-1">
             <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-stone-800/90 border border-stone-700 text-xs font-semibold text-amber-400 shadow-2xs">
               <Sparkles className="w-3.5 h-3.5 text-amber-400" />
               <span>Boas-Vindas Oficiais da Direção</span>

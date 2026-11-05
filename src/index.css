@@ -14,3 +14,15 @@
     letter-spacing: -0.02em;
   }
 }
+
+@keyframes kenburns {
+  0% {
+    transform: scale(1.0) translate(0%, 0%);
+  }
+  50% {
+    transform: scale(1.08) translate(-1%, -1.5%);
+  }
+  100% {
+    transform: scale(1.03) translate(1%, 1%);
+  }
+}
