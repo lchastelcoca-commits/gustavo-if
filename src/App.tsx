@@ -74,21 +74,22 @@ const MainContent: React.FC = () => {
   return (
     <div className="min-h-screen flex flex-col bg-stone-50 text-stone-900 selection:bg-amber-200">
       {/* Top Banner for Account/Order Notification */}
-      <div className="bg-stone-950 text-stone-300 px-4 py-2 text-center text-xs border-b border-stone-800 flex items-center justify-center gap-2">
-        <span className="font-semibold text-white">leitche.enterprises</span>
-        <span aria-hidden="true" className="text-stone-600">·</span>
-        <span>Entrega refrigerada expressa a 3°C para SP, RJ e Minas Gerais</span>
-        <span aria-hidden="true" className="text-stone-600">·</span>
+      <div className="bg-red-950 text-red-200 px-4 py-2.5 text-center text-xs border-b border-red-900 flex flex-wrap items-center justify-center gap-2 font-medium">
+        <span className="font-bold text-white uppercase tracking-wider bg-red-800 px-2 py-0.5 rounded text-[10px]">
+          Aviso aos Clientes
+        </span>
+        <span>Todos os produtos da Leitche Enterprises estão <strong>ESGOTADOS</strong>. Compras suspensas por tempo indeterminado.</span>
+        <span aria-hidden="true" className="text-red-400">·</span>
         {!isAuthenticated ? (
           <button
             onClick={() => openAuth('register')}
-            className="text-amber-400 hover:text-amber-300 font-semibold underline cursor-pointer"
+            className="text-amber-300 hover:text-white font-semibold underline cursor-pointer"
           >
-            Cadastre-se para faturamento B2B ou pedidos residenciais
+            Cadastre-se na lista de espera prioritária
           </button>
         ) : (
           <span className="text-amber-300 font-medium">
-            Conectado como {currentUser?.name} ({isB2B ? 'Tabela Atacado Ativa' : 'Consumidor VIP'})
+            Você está cadastrado na lista de espera ({currentUser?.name})
           </span>
         )}
       </div>
@@ -160,6 +161,27 @@ const MainContent: React.FC = () => {
               className="w-full pl-9 pr-3 py-2 text-xs bg-white border border-stone-300 rounded-xl focus:outline-hidden focus:border-stone-900 shadow-2xs"
             />
           </div>
+        </div>
+
+        {/* Global Catalog Suspension Banner */}
+        <div className="mb-8 p-4 rounded-2xl bg-amber-50/90 border border-amber-300 text-amber-950 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 shadow-2xs">
+          <div className="flex items-start gap-2.5">
+            <span className="p-1 rounded-md bg-amber-200 text-amber-900 shrink-0 font-bold text-xs">⚠️</span>
+            <div>
+              <p className="text-xs sm:text-sm font-bold text-amber-900">
+                Lotes Esgotados — Compras Suspensas por Tempo Indeterminado
+              </p>
+              <p className="text-xs text-amber-800/90 mt-0.5">
+                Não é possível adicionar produtos à sacola nem finalizar pedidos no momento. Você pode abrir qualquer item para consultar o laudo técnico e cadastrar seu contato na lista de espera.
+              </p>
+            </div>
+          </div>
+          <button
+            onClick={() => openAuth('register')}
+            className="px-4 py-2 text-xs font-bold text-stone-900 bg-white border border-amber-300 hover:bg-amber-100 rounded-xl transition-colors shrink-0 cursor-pointer shadow-2xs"
+          >
+            Entrar na Fila
+          </button>
         </div>
 
         {/* Category Filter Tabs (Segmented Controls per §1.A / §0) */}

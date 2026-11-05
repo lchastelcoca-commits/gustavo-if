@@ -102,28 +102,18 @@ export const ProductCard: React.FC<ProductCardProps> = ({ product, onOpenDetail 
           <div className="flex items-center gap-1.5">
             <button
               onClick={() => onOpenDetail(product)}
-              aria-label={`Ver especificações de ${product.name}`}
+              aria-label={`Ver detalhes de ${product.name}`}
               className="p-2 text-stone-500 hover:text-stone-900 hover:bg-stone-100 rounded-lg transition-colors cursor-pointer"
             >
               <Eye className="w-4 h-4" />
             </button>
 
             <button
-              onClick={() => addItem(product, 1)}
-              aria-label={`Adicionar ${product.name} ao pedido`}
-              className="px-3 py-2 text-xs font-semibold text-white bg-stone-900 hover:bg-stone-800 rounded-lg shadow-xs transition-colors flex items-center gap-1.5 cursor-pointer"
+              onClick={() => onOpenDetail(product)}
+              className="px-3.5 py-2 text-xs font-semibold text-red-700 bg-red-50 hover:bg-red-100 border border-red-200 rounded-lg transition-colors flex items-center gap-1.5 cursor-pointer shadow-2xs"
             >
-              {currentQuantity > 0 ? (
-                <>
-                  <Check className="w-3.5 h-3.5 text-emerald-400" />
-                  <span>({currentQuantity})</span>
-                </>
-              ) : (
-                <>
-                  <Plus className="w-3.5 h-3.5" />
-                  <span>Adicionar</span>
-                </>
-              )}
+              <span className="w-2 h-2 rounded-full bg-red-500"></span>
+              <span>Esgotado</span>
             </button>
           </div>
         </div>

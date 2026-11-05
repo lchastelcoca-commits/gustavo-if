@@ -239,21 +239,23 @@ export const CartDrawer: React.FC<CartDrawerProps> = ({
                 </div>
               </div>
 
-              {/* Authentication gate warning if guest */}
-              {!isAuthenticated && (
-                <div className="p-2.5 rounded-lg bg-amber-50 border border-amber-200 text-[11px] text-amber-900 flex items-center gap-2">
-                  <Lock className="w-3.5 h-3.5 text-amber-700 shrink-0" />
-                  <span>Você precisará entrar ou se cadastrar para concluir o agendamento da frota.</span>
+              {/* Suspension warning */}
+              <div className="p-3 rounded-lg bg-red-50 border border-red-200 text-xs text-red-900 space-y-1">
+                <div className="font-bold flex items-center gap-1.5 text-red-800">
+                  <Lock className="w-4 h-4 text-red-600 shrink-0" />
+                  <span>Vendas Suspensas por Tempo Indeterminado</span>
                 </div>
-              )}
+                <p className="text-[11px] leading-relaxed text-red-700">
+                  Devido ao esgotamento completo de todos os nossos lotes de leite e queijos, o checkout e novos pedidos estão bloqueados temporariamente.
+                </p>
+              </div>
 
-              {/* Checkout Button */}
+              {/* Checkout Button (Disabled) */}
               <button
-                onClick={handleProceedToCheckout}
-                className="w-full py-3.5 px-4 text-sm font-semibold text-white bg-stone-900 hover:bg-stone-800 rounded-xl shadow-xs transition-colors flex items-center justify-center gap-2 cursor-pointer"
+                disabled
+                className="w-full py-3.5 px-4 text-xs sm:text-sm font-semibold text-stone-500 bg-stone-200 border border-stone-300 rounded-xl cursor-not-allowed opacity-80 flex items-center justify-center gap-2"
               >
-                <span>{isAuthenticated ? 'Avançar para Agendamento e Pagamento' : 'Fazer Login / Cadastro para Concluir'}</span>
-                <ArrowRight className="w-4 h-4" />
+                <span>Compras Indisponíveis (Todos os Produtos Esgotados)</span>
               </button>
             </div>
           )}

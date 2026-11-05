@@ -67,10 +67,22 @@ export const FounderWelcome: React.FC<FounderWelcomeProps> = ({
 
             <div className="space-y-3.5 text-stone-300 text-sm sm:text-base leading-relaxed">
               <p>
-                Olá! É um grande prazer receber você no portal da <strong>leitche.enterprises</strong>. Como fundador, fundei esta empresa com uma missão inegociável: oferecer a maior pureza láctea do Brasil. Trabalhamos exclusivamente com rebanhos A2A2 genotipados a pasto, queijos artesanais de caverna, nossa premiada linha 100% Zero Lactose e insumos industriais de pureza farmacêutica.
+                Olá! É um grande prazer receber você no portal da <strong>leitche.enterprises</strong>. Como fundador, criei esta empresa com um compromisso inegociável de qualidade e pureza máxima em leites A2A2, queijos artesanais, linha Zero Lactose e insumos industriais.
               </p>
+              
+              {/* Highlighted Notice from Founder */}
+              <div className="p-3.5 bg-red-950/80 border border-red-500/60 rounded-xl text-xs sm:text-sm text-red-200 space-y-1.5">
+                <div className="font-bold text-red-300 flex items-center gap-2">
+                  <span className="w-2.5 h-2.5 rounded-full bg-red-500 animate-pulse"></span>
+                  <span>AVISO IMPORTANTE: TODOS OS PRODUTOS ESTÃO ESGOTADOS</span>
+                </div>
+                <p className="text-xs text-red-200/90 leading-relaxed">
+                  Informamos a todos os clientes e parceiros que <strong>não será possível realizar compras por tempo indeterminado</strong>. Devido à altíssima procura e para preservar o processo de ordenha e cura tradicional das nossas bacias parceiras, nossa capacidade está 100% esgotada.
+                </p>
+              </div>
+
               <p className="text-xs sm:text-sm text-stone-400">
-                Se você está entrando pela primeira vez, <strong>faça seu cadastro ou login</strong> para liberar agendamento em frota própria refrigerada a 3°C, rastreabilidade completa por lote e nossas condições especiais de atacado B2B.
+                Você ainda pode <strong>criar seu cadastro ou fazer login</strong> para garantir prioridade na fila de espera, consultar laudos microbiológicos e acompanhar os lotes da fazenda.
               </p>
             </div>
 

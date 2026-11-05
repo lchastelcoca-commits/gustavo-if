@@ -487,17 +487,17 @@ export const UserDashboard: React.FC<UserDashboardProps> = ({ isOpen, onClose })
                 </div>
               </div>
 
-              <div className="p-4 border border-stone-200 rounded-xl flex items-center justify-between text-xs">
+              <div className="p-4 border border-stone-200 rounded-xl flex flex-col sm:flex-row sm:items-center justify-between gap-3 text-xs bg-stone-50">
                 <div>
-                  <span className="font-semibold text-stone-900 block">Status da Assinatura:</span>
-                  <span className="text-stone-500">Pronto para ativar com base no seu endereço cadastrado.</span>
+                  <span className="font-semibold text-stone-900 block">Status de Novas Adesões:</span>
+                  <span className="text-red-700 font-medium">Temporariamente pausadas devido à capacidade esgotada.</span>
                 </div>
                 <button
                   type="button"
-                  onClick={() => alert('Assinatura recorrente solicitada! Nosso consultor da frota entrará em contato via WhatsApp para confirmar o dia fixo da semana.')}
-                  className="py-2 px-4 text-xs font-semibold text-white bg-stone-900 hover:bg-stone-800 rounded-lg cursor-pointer"
+                  disabled
+                  className="py-2 px-4 text-xs font-semibold text-stone-500 bg-stone-200 border border-stone-300 rounded-lg cursor-not-allowed opacity-80"
                 >
-                  Ativar Assinatura Semanal
+                  Assinaturas Suspensas por Tempo Indeterminado
                 </button>
               </div>
             </div>

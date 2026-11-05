@@ -98,8 +98,12 @@ export const B2BSection: React.FC<B2BSectionProps> = ({ onOpenAuth }) => {
                     Solicitar Cotação Corporativa & Amostras Técnicas
                   </h3>
                   <p className="text-xs text-stone-400 mt-0.5">
-                    Forneça os dados da sua empresa para receber a tabela com preços faturados.
+                    Forneça os dados da sua empresa para entrar na fila prioritária de faturamento.
                   </p>
+                </div>
+
+                <div className="p-2.5 bg-red-950/70 border border-red-500/50 rounded-lg text-[11px] text-red-200">
+                  <strong className="text-white">Aviso:</strong> Nossos tanques e estoques industriais estão com capacidade esgotada. Compras e novos contratos estão suspensos por tempo indeterminado.
                 </div>
 
                 <div>

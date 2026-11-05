@@ -41,6 +41,11 @@ export const Hero: React.FC<HeroProps> = ({ onExploreCatalog, onOpenAuth }) => {
                 <ArrowRight className="w-4 h-4" />
               </button>
 
+              <span className="text-xs text-red-700 font-semibold bg-red-50 border border-red-200 px-3 py-2 rounded-xl flex items-center gap-1.5">
+                <span className="w-2 h-2 rounded-full bg-red-600"></span>
+                <span>Lotes Esgotados (Compras Suspensas)</span>
+              </span>
+
               {!isAuthenticated ? (
                 <button
                   onClick={() => onOpenAuth('register')}

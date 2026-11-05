@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { X, Check, ShoppingBag, ShieldCheck, ThermometerSnowflake, Droplets, MapPin } from 'lucide-react';
+import { X, Check, ShoppingBag, ShieldCheck, ThermometerSnowflake, Droplets, MapPin, AlertCircle, Bell } from 'lucide-react';
 import { Product } from '../types';
 import { useAuth } from '../context/AuthContext';
 import { useCart } from '../context/CartContext';
@@ -14,6 +14,8 @@ export const ProductDetailModal: React.FC<ProductDetailModalProps> = ({ product,
   const { addItem } = useCart();
   const [quantity, setQuantity] = useState(1);
   const [justAdded, setJustAdded] = useState(false);
+  const [waitlistContact, setWaitlistContact] = useState('');
+  const [waitlistSubmitted, setWaitlistSubmitted] = useState(false);
 
   if (!product) return null;
 
@@ -146,60 +148,80 @@ export const ProductDetailModal: React.FC<ProductDetailModalProps> = ({ product,
               </div>
             </div>
 
-            {/* Price & Add to Cart Module */}
-            <div className="mt-8 pt-5 border-t border-stone-200 flex flex-wrap items-center justify-between gap-4">
-              <div>
-                <div className="flex items-baseline gap-1.5">
-                  <span className="text-sm font-medium text-stone-500">R$</span>
-                  <span className="text-2xl font-bold font-mono tabular-nums text-stone-950">
-                    {(displayPrice * quantity).toFixed(2).replace('.', ',')}
-                  </span>
+            {/* Price & Out of Stock / Suspension Notice */}
+            <div className="mt-8 pt-5 border-t border-stone-200 space-y-4">
+              <div className="flex flex-wrap items-center justify-between gap-4">
+                <div>
+                  <div className="flex items-baseline gap-1.5">
+                    <span className="text-sm font-medium text-stone-500">R$</span>
+                    <span className="text-2xl font-bold font-mono tabular-nums text-stone-950">
+                      {displayPrice.toFixed(2).replace('.', ',')}
+                    </span>
+                  </div>
+                  {isB2B && (
+                    <span className="text-[11px] text-amber-900 font-semibold block">
+                      Valor faturado atacado B2B
+                    </span>
+                  )}
                 </div>
-                {isB2B && (
-                  <span className="text-[11px] text-amber-900 font-semibold">
-                    Valor faturado atacado B2B
-                  </span>
+
+                <div className="inline-flex items-center gap-1.5 px-3 py-1.5 bg-red-100 text-red-800 text-xs font-semibold rounded-lg border border-red-200">
+                  <span className="w-2 h-2 rounded-full bg-red-600 animate-pulse"></span>
+                  <span>Esgotado por Tempo Indeterminado</span>
+                </div>
+              </div>
+
+              {/* Suspension Box */}
+              <div className="p-3.5 bg-amber-50 rounded-xl border border-amber-200/90 text-xs text-amber-950 space-y-2">
+                <div className="font-bold flex items-center gap-1.5 text-amber-900">
+                  <AlertCircle className="w-4 h-4 text-amber-700 shrink-0" />
+                  <span>Vendas Temporariamente Suspensas</span>
+                </div>
+                <p className="text-[11px] leading-relaxed">
+                  Todos os lotes deste produto lácteo estão esgotados. Para preservar o rigor artesanal e a segurança biológica das nossas fazendas, as vendas online estão suspensas por tempo indeterminado.
+                </p>
+
+                {/* Waitlist simulator */}
+                {waitlistSubmitted ? (
+                  <div className="p-2 bg-emerald-100/80 border border-emerald-300 text-emerald-900 rounded-lg text-xs font-medium flex items-center gap-2">
+                    <Check className="w-4 h-4 text-emerald-600 shrink-0" />
+                    <span>Inscrição confirmada na lista de espera! Avisaremos você via WhatsApp/E-mail assim que as ordenhas forem liberadas.</span>
+                  </div>
+                ) : (
+                  <form
+                    onSubmit={(e) => {
+                      e.preventDefault();
+                      if (waitlistContact.trim()) setWaitlistSubmitted(true);
+                    }}
+                    className="pt-1 flex gap-2"
+                  >
+                    <input
+                      type="text"
+                      required
+                      placeholder="Seu WhatsApp ou E-mail para a lista de espera"
+                      value={waitlistContact}
+                      onChange={e => setWaitlistContact(e.target.value)}
+                      className="flex-1 px-3 py-1.5 text-xs bg-white border border-amber-300 rounded-lg text-stone-900"
+                    />
+                    <button
+                      type="submit"
+                      className="px-3 py-1.5 bg-stone-900 hover:bg-stone-800 text-white font-semibold text-xs rounded-lg transition-colors flex items-center gap-1.5 cursor-pointer whitespace-nowrap"
+                    >
+                      <Bell className="w-3.5 h-3.5" />
+                      <span>Entrar na Fila</span>
+                    </button>
+                  </form>
                 )}
               </div>
 
-              <div className="flex items-center gap-3">
-                {/* Stepper */}
-                <div className="flex items-center border border-stone-300 rounded-lg bg-stone-50 p-1">
-                  <button
-                    type="button"
-                    onClick={() => setQuantity(Math.max(1, quantity - 1))}
-                    className="w-7 h-7 flex items-center justify-center text-stone-700 hover:bg-stone-200 rounded text-sm font-bold cursor-pointer"
-                  >
-                    -
-                  </button>
-                  <span className="w-8 text-center font-mono font-semibold text-sm">
-                    {quantity}
-                  </span>
-                  <button
-                    type="button"
-                    onClick={() => setQuantity(quantity + 1)}
-                    className="w-7 h-7 flex items-center justify-center text-stone-700 hover:bg-stone-200 rounded text-sm font-bold cursor-pointer"
-                  >
-                    +
-                  </button>
-                </div>
-
+              <div className="pt-2">
                 <button
                   type="button"
-                  onClick={handleAdd}
-                  className="px-5 py-2.5 text-xs sm:text-sm font-semibold text-white bg-stone-900 hover:bg-stone-800 rounded-lg shadow-xs transition-colors flex items-center gap-2 cursor-pointer"
+                  disabled
+                  className="w-full py-3 px-4 text-xs sm:text-sm font-semibold text-stone-500 bg-stone-100 border border-stone-300 rounded-xl cursor-not-allowed opacity-80 flex items-center justify-center gap-2"
                 >
-                  {justAdded ? (
-                    <>
-                      <Check className="w-4 h-4 text-emerald-400" />
-                      <span>Adicionado!</span>
-                    </>
-                  ) : (
-                    <>
-                      <ShoppingBag className="w-4 h-4" />
-                      <span>Adicionar ao Pedido</span>
-                    </>
-                  )}
+                  <ShoppingBag className="w-4 h-4 text-stone-400" />
+                  <span>Não é Possível Comprar (Lote Esgotado)</span>
                 </button>
               </div>
             </div>
