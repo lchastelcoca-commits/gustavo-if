@@ -42,19 +42,26 @@ export const ProductDetailModal: React.FC<ProductDetailModalProps> = ({ product,
 
         <div className="grid grid-cols-1 md:grid-cols-12">
           {/* Image Column */}
-          <div className="md:col-span-5 bg-stone-100 relative min-h-[260px] md:min-h-full">
+          <div className="md:col-span-5 bg-gradient-to-br from-stone-100 to-amber-50/40 relative min-h-[260px] md:min-h-full flex items-center justify-center p-6 text-center">
+            <div className="text-stone-400 text-xs">
+              <span className="font-semibold text-stone-700 block text-sm">{product.name}</span>
+              <span className="text-xs text-stone-500 mt-1 block">{product.volumeOrWeight}</span>
+            </div>
             <img
               src={product.image}
               alt={product.name}
               referrerPolicy="no-referrer"
-              className="w-full h-full object-cover object-center"
+              className="w-full h-full object-cover object-center absolute inset-0 z-1"
+              onError={(e) => {
+                (e.target as HTMLElement).style.display = 'none';
+              }}
             />
             {product.badge && (
-              <div className="absolute top-4 left-4 bg-stone-900/90 text-white text-xs font-semibold px-3 py-1 rounded-md">
+              <div className="absolute top-4 left-4 bg-stone-900/90 text-white text-xs font-semibold px-3 py-1 rounded-md z-10">
                 {product.badge}
               </div>
             )}
-            <div className="absolute bottom-4 left-4 right-4 p-3 bg-stone-900/80 backdrop-blur-md text-white text-xs rounded-xl flex items-center gap-2">
+            <div className="absolute bottom-4 left-4 right-4 p-3 bg-stone-900/80 backdrop-blur-md text-white text-xs rounded-xl flex items-center gap-2 z-10">
               <ThermometerSnowflake className="w-4 h-4 text-sky-300 shrink-0" />
               <span>Conserva refrigerada: {product.temperature}</span>
             </div>

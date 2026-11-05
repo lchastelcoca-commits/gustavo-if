@@ -17,7 +17,7 @@ export const PRODUCTS: Product[] = [
     temperature: '2°C a 4°C',
     inStock: true,
     badge: 'Mais Vendido',
-    image: '/src/assets/images/product_whole_milk_1793891870420.jpg',
+    image: '/images/products/product_whole_milk.jpg',
     ingredients: ['Leite cru orgânico integral de vacas A2A2 pasteurizado'],
     nutrition: {
       calories: '61 kcal',
@@ -45,7 +45,7 @@ export const PRODUCTS: Product[] = [
     temperature: '1°C a 4°C',
     inStock: true,
     badge: 'Zero Lactose',
-    image: '/src/assets/images/product_yogurt_lactose_free_1793891871714.jpg',
+    image: '/images/products/product_yogurt_lactose_free.jpg',
     ingredients: ['Leite pasteurizado integral', 'Enzima lactase', 'Fermentos lácteos vivos (Streptococcus thermophilus, Lactobacillus bulgaricus)'],
     nutrition: {
       calories: '112 kcal',
@@ -73,7 +73,7 @@ export const PRODUCTS: Product[] = [
     temperature: '4°C a 8°C',
     inStock: true,
     badge: 'Artesanal D.O.P.',
-    image: '/src/assets/images/product_cheeses_dairy_1793891871575.jpg',
+    image: '/images/products/product_cheeses_dairy.jpg',
     ingredients: ['Creme de leite cru maturado', 'Flor de sal marinho', 'Leite cru canastra', 'Pingo natural', 'Coalho'],
     nutrition: {
       calories: '360 kcal',
@@ -101,7 +101,7 @@ export const PRODUCTS: Product[] = [
     temperature: 'Ambiente fresco e seco (15°C a 25°C)',
     inStock: true,
     badge: 'Grau Alimentício',
-    image: '/src/assets/images/product_bulk_dairy_lactose_1793891871759.jpg',
+    image: '/images/products/product_bulk_dairy_lactose.jpg',
     ingredients: ['Lactose pura monoidratada de soro lácteo'],
     nutrition: {
       calories: '380 kcal',
@@ -129,7 +129,7 @@ export const PRODUCTS: Product[] = [
     temperature: 'Ambiente fresco',
     inStock: true,
     badge: 'Alta Pureza',
-    image: '/src/assets/images/product_bulk_dairy_lactose_1793891871759.jpg',
+    image: '/images/products/product_bulk_dairy_lactose.jpg',
     ingredients: ['Proteína isolada do soro de leite (WPI)'],
     nutrition: {
       calories: '110 kcal',
@@ -157,7 +157,7 @@ export const PRODUCTS: Product[] = [
     temperature: '2°C a 4°C',
     inStock: true,
     badge: 'Confeitaria Pro',
-    image: '/src/assets/images/hero_dairy_leitche_1793891870627.jpg',
+    image: '/images/products/hero_dairy_leitche.jpg',
     ingredients: ['Creme de leite pasteurizado fresco'],
     nutrition: {
       calories: '345 kcal',

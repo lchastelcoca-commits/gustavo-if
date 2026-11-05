@@ -16,11 +16,29 @@ interface CartContextType {
 
 const CartContext = createContext<CartContextType | undefined>(undefined);
 
+const normalizeImagePath = (path: string): string => {
+  if (!path) return '/images/products/product_whole_milk.jpg';
+  if (path.includes('product_whole_milk')) return '/images/products/product_whole_milk.jpg';
+  if (path.includes('product_yogurt')) return '/images/products/product_yogurt_lactose_free.jpg';
+  if (path.includes('product_cheeses') || path.includes('cheese')) return '/images/products/product_cheeses_dairy.jpg';
+  if (path.includes('product_bulk_dairy') || path.includes('lactose')) return '/images/products/product_bulk_dairy_lactose.jpg';
+  if (path.includes('hero_dairy') || path.includes('creme')) return '/images/products/hero_dairy_leitche.jpg';
+  return path;
+};
+
 export const CartProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   const [items, setItems] = useState<CartItem[]>(() => {
     try {
       const stored = localStorage.getItem('leitche_cart');
-      return stored ? JSON.parse(stored) : [];
+      if (!stored) return [];
+      const parsed: CartItem[] = JSON.parse(stored);
+      return parsed.map(item => ({
+        ...item,
+        product: {
+          ...item.product,
+          image: normalizeImagePath(item.product.image)
+        }
+      }));
     } catch {
       return [];
     }

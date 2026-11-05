@@ -92,7 +92,7 @@ const INITIAL_ORDERS: Order[] = [
           origin: 'Fazenda Vale do Sol, MG',
           temperature: '2°C a 4°C',
           inStock: true,
-          image: '/src/assets/images/product_whole_milk_1793891870420.jpg',
+          image: '/images/products/product_whole_milk.jpg',
           ingredients: ['Leite cru orgânico integral'],
           nutrition: { calories: '61 kcal', protein: '3.4g', carbs: '4.8g', fat: '3.8g', calcium: '124mg', sodium: '48mg' }
         },
@@ -114,7 +114,7 @@ const INITIAL_ORDERS: Order[] = [
           origin: 'Laticínio Leitche',
           temperature: '1°C a 4°C',
           inStock: true,
-          image: '/src/assets/images/product_yogurt_lactose_free_1793891871714.jpg',
+          image: '/images/products/product_yogurt_lactose_free.jpg',
           ingredients: ['Leite pasteurizado', 'Lactase'],
           nutrition: { calories: '112 kcal', protein: '7.8g', carbs: '4.2g', fat: '6.5g', calcium: '142mg', sodium: '52mg' }
         },
@@ -163,9 +163,29 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
   });
 
   const [orders, setOrders] = useState<Order[]>(() => {
+    const normalizeImg = (p: string) => {
+      if (!p) return '/images/products/product_whole_milk.jpg';
+      if (p.includes('product_whole_milk')) return '/images/products/product_whole_milk.jpg';
+      if (p.includes('product_yogurt')) return '/images/products/product_yogurt_lactose_free.jpg';
+      if (p.includes('product_cheeses') || p.includes('cheese')) return '/images/products/product_cheeses_dairy.jpg';
+      if (p.includes('product_bulk_dairy') || p.includes('lactose')) return '/images/products/product_bulk_dairy_lactose.jpg';
+      if (p.includes('hero_dairy') || p.includes('creme')) return '/images/products/hero_dairy_leitche.jpg';
+      return p;
+    };
     try {
       const stored = localStorage.getItem('leitche_orders');
-      return stored ? JSON.parse(stored) : INITIAL_ORDERS;
+      if (!stored) return INITIAL_ORDERS;
+      const parsed: Order[] = JSON.parse(stored);
+      return parsed.map(ord => ({
+        ...ord,
+        items: ord.items.map(it => ({
+          ...it,
+          product: {
+            ...it.product,
+            image: normalizeImg(it.product.image)
+          }
+        }))
+      }));
     } catch {
       return INITIAL_ORDERS;
     }

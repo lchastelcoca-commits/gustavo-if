@@ -77,7 +77,7 @@ export const Hero: React.FC<HeroProps> = ({ onExploreCatalog, onOpenAuth }) => {
           <div className="lg:col-span-6">
             <div className="relative rounded-2xl overflow-hidden shadow-2xl border border-stone-200/90 aspect-16/10 lg:aspect-4/3 bg-stone-100">
               <img
-                src="/src/assets/images/hero_dairy_leitche_1793891870627.jpg"
+                src="/images/products/hero_dairy_leitche.jpg"
                 alt="Garrafa de leite orgânico e jarra cerâmica da Leitche Enterprises sobre bancada de pedra natural"
                 referrerPolicy="no-referrer"
                 className="w-full h-full object-cover object-center"

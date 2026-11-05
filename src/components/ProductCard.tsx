@@ -23,28 +23,33 @@ export const ProductCard: React.FC<ProductCardProps> = ({ product, onOpenDetail 
       {/* 65-75% Image Container */}
       <div 
         onClick={() => onOpenDetail(product)}
-        className="relative aspect-4/3 bg-stone-100 overflow-hidden cursor-pointer"
+        className="relative aspect-4/3 bg-gradient-to-br from-stone-100 to-amber-50/40 overflow-hidden cursor-pointer flex items-center justify-center text-center p-4"
       >
+        {/* Fallback container underneath image */}
+        <div className="text-stone-400 text-xs flex flex-col items-center gap-1 z-0">
+          <span className="font-semibold text-stone-700">{product.name}</span>
+          <span className="text-[10px] text-stone-500">{product.volumeOrWeight}</span>
+        </div>
+
         <img
           src={product.image}
           alt={product.name}
           referrerPolicy="no-referrer"
-          className="w-full h-full object-cover object-center group-hover:scale-102 transition-transform duration-300"
+          className="w-full h-full object-cover object-center group-hover:scale-102 transition-transform duration-300 absolute inset-0 z-1"
           onError={(e) => {
-            // Zero broken image fallback
             (e.target as HTMLElement).style.display = 'none';
           }}
         />
 
         {/* Subtle single tag if present */}
         {product.badge && (
-          <div className="absolute top-3 left-3 bg-stone-900/85 backdrop-blur-xs text-white text-[11px] font-medium px-2.5 py-1 rounded-md">
+          <div className="absolute top-3 left-3 bg-stone-900/85 backdrop-blur-xs text-white text-[11px] font-medium px-2.5 py-1 rounded-md z-10">
             {product.badge}
           </div>
         )}
 
         {/* Volume/Weight indicator */}
-        <div className="absolute bottom-3 right-3 bg-white/90 backdrop-blur-xs text-stone-800 text-[11px] font-mono font-medium px-2 py-0.5 rounded-md border border-stone-200/60">
+        <div className="absolute bottom-3 right-3 bg-white/90 backdrop-blur-xs text-stone-800 text-[11px] font-mono font-medium px-2 py-0.5 rounded-md border border-stone-200/60 z-10">
           {product.volumeOrWeight}
         </div>
       </div>
