@@ -23,9 +23,9 @@ export const Hero: React.FC<HeroProps> = ({ onExploreCatalog, onOpenAuth }) => {
               <span>Desde 1928</span>
             </div>
 
-            <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight text-stone-900 leading-[1.12] text-balance">
+            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight text-stone-900 leading-[1.12] text-balance">
               Pureza láctea do pasto regenerativo à alta gastronomia e indústria.
-            </h1>
+            </h2>
 
             <p className="text-base sm:text-lg text-stone-600 leading-relaxed max-w-xl">
               A <strong>leitche.enterprises</strong> fornece leites nobres com certificação A2A2, queijos artesanais de maturação lenta, derivados 100% zero lactose e lactose pura microcristalina para confeitaria e formulação industrial.

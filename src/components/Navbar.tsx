@@ -29,7 +29,7 @@ export const Navbar: React.FC<NavbarProps> = ({
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between gap-8">
         {/* Zone 1: Brand Wordmark (Single Text Element) */}
         <button
-          onClick={() => handleNavClick('hero')}
+          onClick={() => handleNavClick('boas-vindas')}
           className="text-xl sm:text-2xl font-bold tracking-tight text-stone-900 whitespace-nowrap shrink-0 text-left cursor-pointer transition-opacity hover:opacity-80"
         >
           leitche<span className="text-amber-700">.</span>enterprises

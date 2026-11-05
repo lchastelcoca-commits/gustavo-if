@@ -38,6 +38,11 @@ const MainContent: React.FC = () => {
   };
 
   const handleNavigateSection = (sectionId: string) => {
+    if (sectionId === 'boas-vindas' || sectionId === 'hero') {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+      return;
+    }
+
     if (sectionId === 'zero-lactose') {
       setSelectedCategory('zero_lactose');
       const el = document.getElementById('catalogo');
@@ -95,10 +100,10 @@ const MainContent: React.FC = () => {
         onNavigateSection={handleNavigateSection}
       />
 
-      {/* Hero Section */}
-      <Hero
-        onExploreCatalog={() => handleNavigateSection('catalogo')}
+      {/* 1. Primeira Imagem e Boas-Vindas: Mensagem Oficial do Dono & Fundador */}
+      <FounderWelcome
         onOpenAuth={(tab) => openAuth(tab)}
+        onExploreCatalog={() => handleNavigateSection('catalogo')}
       />
 
       {/* Logged-In User Banner / Prompt */}
@@ -123,10 +128,10 @@ const MainContent: React.FC = () => {
         </div>
       )}
 
-      {/* Founder Welcome Message */}
-      <FounderWelcome
-        onOpenAuth={(tab) => openAuth(tab)}
+      {/* 2. Coleção e Laticínios Nobres */}
+      <Hero
         onExploreCatalog={() => handleNavigateSection('catalogo')}
+        onOpenAuth={(tab) => openAuth(tab)}
       />
 
       {/* Main Catalog Section */}
